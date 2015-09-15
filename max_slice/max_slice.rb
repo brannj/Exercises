@@ -5,7 +5,7 @@ def max_slice(ary)
     ary_slice.slice_when { |i| i < 0 }.to_a
   end.flatten(1)
 
-  second_slice.max do |slice|
+  second_slice.max_by do |slice|
     slice.reduce(:+)
   end
 end
