@@ -12,6 +12,7 @@ Create a `max_slice` method that takes an array of integers and returns the slic
 **Solution:**  
 As negative values are the only integers that can reduce the sum of the array we can split the array and isolate the negatives. It is then possible to iterate through and return the slice that has the maximum sum.  
 
-1. Use `slice_before` to slice the array before any element that is less than zero. Store the resulting enumerator in a variable. For this exercise we can think of this enumerator as an array of arrays (our slices).
-2. Iterate through the arrays with `map`, use `slice_when` on each array to slice when any element is less than zero. Now the array of slices is within two arrays, so we `flatten(1)` to make the next iteration easier.
-3. Use `max_by` to iterate through the array of slices and return the slice that has the largest sum.
+1. Check if the array is all negatives and return the maximum if so.
+2. Use `chunk` to slice the array into negative and positive value chunks, pass the enumerator to an array and 'flatten(1)' to remove one level of array depth.
+3. `select` the Arrays to avoid calling `max_by` on the boolean values inserted by `chunk`.
+4. Use `max_by` to iterate through the selected array slices and return the slice that has the largest sum.
